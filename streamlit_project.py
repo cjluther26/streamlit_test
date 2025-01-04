@@ -18,8 +18,18 @@ test_df = test_df.sort_values(by=['team', 'player'])
 
 
 
-def filter_data(df: pd.DataFrame, team: str, player: str):
+def filter_data(df: pd.DataFrame, team: str, player: str) -> pd.DataFrame:
     """
+    Filters the data based on conditions selected by the user
+
+    Parameters:
+    - df (pd.DataFrame): the DataFrame to filter
+    - team (str): the team to filter by
+    - player (str): the player to filter by
+
+    Returns:
+    - pd.DataFrame: the filtered DataFrame
+
     """
 
     if team: 
@@ -34,15 +44,24 @@ def filter_data(df: pd.DataFrame, team: str, player: str):
 
 def shots_plot(df: pd.DataFrame, ax, pitch):
     """
+    Creates the plot of shots on the pitch 
+
+    Parameters:
+    - df (pd.DataFrame): the DataFrame to plot
+    - ax: the axis to plot on
+    - pitch: the pitch object to plot on
+
+    Returns:
+    - None: plots the shots!
+
     """
 
     ax.set_title("xG Plot")
-    scatter = []
 
     # Iterate through each record
     for x in df.to_dict(orient = "records"):
 
-        shot = pitch.scatter(
+        pitch.scatter(
             x = 100 * x["X"],
             y = 100 * x["Y"],
             ax = ax,
@@ -53,39 +72,39 @@ def shots_plot(df: pd.DataFrame, ax, pitch):
             zorder = 2 if x["result"] == "Goal" else 1
         )
 
-        # Append to scatter (list of points)
-        scatter.append(shot)
-
-    # Enable interactive tooltips
-    cursor = mplcursors.cursor(
-        scatter,
-        hover = True
-    )
-    
-    @cursor.connect("add")
-    def on_add(selection):
-        """
-        """
-        shot_data = df.iloc[selection.index]
-        selection.annotation.set_text(
-            f"Player: {shot_data['player']}\n"
-            f"Minute: {shot_data['minute']}\n"
-            f"xG: {shot_data['xG']}\n"
-            f"Result: {shot_data['result']}\n"
-        )
-        selection.annotation.get_bbox_patch().set(fc = "white", alpha = 0.7)
 
 
+def get_plot_labels(df: pd.DataFrame) -> dict:
+    """
+    Gets the labels for the plot
+
+    Parameters:
+    - df (pd.DataFrame): the DataFrame to get labels for
+
+    Returns:
+    - plot_labels (dict): dictionary containing the labels for the plot
+
+    """
+
+    labels = {}
+
+    # match_df = df[df["match_id"] == match_id]
+
+    # Isolate home and away teams
+    labels["home_team"] = df["h_team"].iloc[0]
+    labels["away_team"] = df["a_team"].iloc[0]
+
+    # Isolate date (crudely)
+    labels["date"] = df["date"].iloc[0][0:10]
+
+    return labels
 
 
+# st.title(f"Tottenham vs. Nottingham Forest (2024-12-26)")
 
+labels = get_plot_labels(test_df)
 
-
-
-
-
-
-st.title("Tottenham vs. Nottingham Forest (2024-12-26)")
+st.title(f"{labels["away_team"]} vs. {labels["home_team"]} ({labels["date"]})")
 st.subheader("Filter to a team/player to see all of their shots in the game!")
 
 # Ensure there is actually data available

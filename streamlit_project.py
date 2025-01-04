@@ -5,7 +5,7 @@ from mplsoccer import VerticalPitch
 
 
 st.title("Tottenham vs. Nottingham Forest (2024-12-26)")
-st.subheader("Fitler to a team/player to see all of their shots in the game!")
+st.subheader("Filter to a team/player to see all of their shots in the game!")
 
 # Load data
 test_df = pd.read_csv("./test_data_shots.csv")
@@ -31,7 +31,7 @@ def filter_data(df: pd.DataFrame, team: str, player: str):
 
         df = df[df["team"] == team] 
 
-    if player: 
+    if player and player != "": 
 
         df = df[df["player"] == player] 
     
@@ -47,8 +47,6 @@ def shots_plot(df: pd.DataFrame, ax, pitch):
     for x in df.to_dict(orient = "records"):
 
         pitch.scatter(
-            # x = 100 - (100 * x["X"]),
-            # y = 100 - (100 * x["Y"]),
             x = 100 * x["X"],
             y = 100 * x["Y"],
             ax = ax,
@@ -62,7 +60,6 @@ def shots_plot(df: pd.DataFrame, ax, pitch):
 
 # Configure streamlit app
 teams = test_df["team"].unique()
-players = test_df["player"].unique()
 
 team = st.selectbox(
     label = "Select a team",
@@ -70,10 +67,13 @@ team = st.selectbox(
     index = 0
 )
 
+available_players = test_df[test_df["team"] == team]["player"].unique()
+available_players.append("").sort_values()
+
 player = st.selectbox(
     label = "Select a player",
-    options = test_df[test_df["team"] == team]["player"].unique(),
-    index = None
+    options = available_players,
+    index = 0
 )
 
 # Isolate data

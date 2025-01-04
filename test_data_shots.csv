@@ -1,0 +1,24 @@
+,id,minute,result,X,Y,xG,player,h_a,player_id,situation,season,shotType,match_id,h_team,a_team,h_goals,a_goals,date,player_assisted,lastAction
+0,609137,10,MissedShots,0.8390000152587891,0.6830000305175781,0.05685380846261978,Callum Hudson-Odoi,h,6456,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Morgan Gibbs-White,Pass
+1,609138,12,BlockedShot,0.805,0.5970000076293945,0.03588489815592766,Elliot Anderson,h,9154,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Callum Hudson-Odoi,Pass
+2,609141,25,MissedShots,0.7759999847412109,0.5670000076293945,0.03028203919529915,Anthony Elanga,h,9524,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Callum Hudson-Odoi,Pass
+3,609142,27,Goal,0.9059999847412109,0.41900001525878905,0.5826987028121948,Anthony Elanga,h,9524,OpenPlay,2024,LeftFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Morgan Gibbs-White,Throughball
+4,609148,52,SavedShot,0.8690000152587891,0.54,0.10400202870368958,Morgan Gibbs-White,h,6857,OpenPlay,2024,LeftFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,,None
+5,609151,60,SavedShot,0.8680000305175781,0.48700000762939455,0.10080678015947342,Anthony Elanga,h,9524,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,,None
+6,609152,62,MissedShots,0.9390000152587891,0.49700000762939456,0.06987939774990082,Nikola Milenkovic,h,6174,FromCorner,2024,Head,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Elliot Anderson,Aerial
+7,609154,67,BlockedShot,0.8180000305175781,0.6409999847412109,0.10284178704023361,Neco Williams,h,8204,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,,Dispossessed
+8,609155,67,MissedShots,0.8830000305175781,0.4229999923706055,0.15671366453170776,Ola Aina,h,725,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,,Rebound
+9,609157,87,MissedShots,0.9730000305175781,0.34599998474121096,0.07633382081985474,Taiwo Awoniyi,h,7814,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,,None
+10,609136,4,SavedShot,0.8640000152587891,0.575999984741211,0.10114055126905441,Son Heung-Min,a,453,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Dejan Kulusevski,Pass
+11,609139,25,BlockedShot,0.845,0.46599998474121096,0.09168517589569092,Dominic Solanke,a,1679,OpenPlay,2024,LeftFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Djed Spence,Pass
+12,609140,25,SavedShot,0.8909999847412109,0.325,0.06413431465625763,Brennan Johnson,a,10760,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Rodrigo Bentancur,Pass
+13,609143,31,BlockedShot,0.7219999694824218,0.47099998474121096,0.016208704560995102,Djed Spence,a,10764,OpenPlay,2024,LeftFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Radu Dragusin,Pass
+14,609144,38,SavedShot,0.87,0.34400001525878904,0.053891029208898544,Brennan Johnson,a,10760,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Dejan Kulusevski,Pass
+15,609145,39,BlockedShot,0.7809999847412109,0.6819999694824219,0.02165699005126953,Dominic Solanke,a,1679,FromCorner,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Son Heung-Min,Pass
+16,609146,45,MissedShots,0.7430000305175781,0.3820000076293945,0.0516199916601181,Son Heung-Min,a,453,DirectFreekick,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,,Standard
+17,609147,46,MissedShots,0.7709999847412109,0.3039999961853027,0.018511049449443817,Dejan Kulusevski,a,6691,OpenPlay,2024,LeftFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Brennan Johnson,Pass
+18,609149,56,BlockedShot,0.8430000305175781,0.595999984741211,0.04561706259846687,Pape Sarr,a,9021,FromCorner,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,,None
+19,609150,56,SavedShot,0.9109999847412109,0.4809999847412109,0.4970286786556244,Brennan Johnson,a,10760,FromCorner,2024,LeftFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Djed Spence,TakeOn
+20,609153,66,MissedShots,0.789000015258789,0.57,0.03740664944052696,James Maddison,a,6818,OpenPlay,2024,LeftFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Son Heung-Min,Pass
+21,609156,75,BlockedShot,0.769000015258789,0.46599998474121096,0.029272712767124176,James Maddison,a,6818,OpenPlay,2024,RightFoot,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Son Heung-Min,Pass
+22,609158,90,MissedShots,0.8569999694824219,0.5120000076293946,0.029405001550912857,Dominic Solanke,a,1679,OpenPlay,2024,Head,26779,Nottingham Forest,Tottenham,1,0,2024-12-26 15:00:00,Pedro Porro,Cross

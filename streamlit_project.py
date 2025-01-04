@@ -4,7 +4,7 @@ import streamlit as st
 from mplsoccer import VerticalPitch
 
 
-st.title("Tottenham vs. Nottingham Forest (2024-12-16)")
+st.title("Tottenham vs. Nottingham Forest (2024-12-26)")
 st.subheader("Fitler to a team/player to see all of their shots in the game!")
 
 # Load data

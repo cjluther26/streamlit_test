@@ -1,12 +1,11 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
-from mplsoccer import VerticalPitch
+from mplsoccer import VerticalPitch, Pitch
 import mplcursors
 
 
-st.title("Tottenham vs. Nottingham Forest (2024-12-26)")
-st.subheader("Filter to a team/player to see all of their shots in the game!")
+
 
 # Load data
 test_df = pd.read_csv("./test_data_shots.csv")
@@ -17,11 +16,6 @@ test_df['team'] = np.where(test_df["h_a"] == "h", test_df["h_team"], test_df["a_
 test_df = test_df[["id", "minute", "result", "X", "Y", "xG", "player", "team", "situation", "shotType", "match_id", "h_goals", "a_goals", "player_assisted", "lastAction", "date"]]
 test_df = test_df.sort_values(by=['team', 'player'])
 
-
-# Ensure there is actually data available
-if test_df.empty:
-    st.error("No data available to display.")
-    st.stop()
 
 
 def filter_data(df: pd.DataFrame, team: str, player: str):
@@ -83,6 +77,22 @@ def shots_plot(df: pd.DataFrame, ax, pitch):
 
 
 
+
+
+
+
+
+
+
+
+st.title("Tottenham vs. Nottingham Forest (2024-12-26)")
+st.subheader("Filter to a team/player to see all of their shots in the game!")
+
+# Ensure there is actually data available
+if test_df.empty:
+    st.error("No data available to display.")
+    st.stop()
+
 # Configure streamlit app
 teams = test_df["team"].unique()
 
@@ -106,9 +116,8 @@ player = st.selectbox(
 # Isolate data
 xG_df = filter_data(test_df, team = team, player = player)
 
-
 # Create a pitch
-pitch = VerticalPitch(pitch_type = "opta", line_zorder = 2, pitch_color = "#f0f0f0", line_color = "black", half = True)
+pitch = Pitch(pitch_type = "opta", line_zorder = 2, pitch_color = "#f0f0f0", line_color = "black", half = True)
 
 fig, ax = pitch.draw(figsize=(10, 10))
 shots_plot(xG_df, ax, pitch)

@@ -3,5 +3,3 @@ numpy
 pandas
 mplsoccer
 mplcursors
-plotly
-plotly.express

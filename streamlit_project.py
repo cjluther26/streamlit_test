@@ -13,7 +13,7 @@ test_df = pd.read_csv("./test_data_shots.csv")
 # Clean data
 test_df['xG'] = test_df['xG'].fillna(0)
 test_df['team'] = np.where(test_df["h_a"] == "h", test_df["h_team"], test_df["a_team"])
-test_df = test_df[["id", "minute", "result", "X", "Y", "xG", "player", "team", "situation", "shotType", "match_id", "h_goals", "a_goals", "player_assisted", "lastAction", "date"]]
+test_df = test_df[["id", "minute", "result", "X", "Y", "xG", "player", "team", "situation", "shotType", "match_id", "h_goals", "a_goals", "player_assisted", "lastAction", "date", "h_team", "a_team"]]
 test_df = test_df.sort_values(by=['team', 'player'])
 
 

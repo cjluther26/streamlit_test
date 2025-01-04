@@ -67,12 +67,14 @@ team = st.selectbox(
     index = 0
 )
 
+# Isolate players to plot, add empty string to allow for all players, and sort
 available_players = test_df[test_df["team"] == team]["player"].unique().tolist()
 available_players.append("")
+available_players.sort()
 
 player = st.selectbox(
     label = "Select a player",
-    options = available_players.sort_values(),
+    options = available_players,
     index = 0
 )
 

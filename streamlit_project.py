@@ -68,11 +68,11 @@ team = st.selectbox(
 )
 
 available_players = test_df[test_df["team"] == team]["player"].unique()
-available_players.append("").sort_values()
+available_players.append("")
 
 player = st.selectbox(
     label = "Select a player",
-    options = available_players,
+    options = available_players.sort_values(),
     index = 0
 )
 

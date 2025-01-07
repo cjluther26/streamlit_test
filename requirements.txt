@@ -1,5 +1,10 @@
-streamlit
+bs4
+lxml
+pandas 
 numpy
-pandas
+requests
+logging
+typing
+streamlit
 mplsoccer
 mplcursors

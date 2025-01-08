@@ -162,7 +162,7 @@ match_df = isolate_match_df(test_df, match_name)
 labels = get_plot_labels(match_df)
 
 # Set titles
-st.title(f"{labels["home_team"]} vs. {labels["away_team"]} ({labels["date_str"]})")
+st.title(f"({labels["date_str"]}) {labels["home_team"]} vs. {labels["away_team"]}")
 st.subheader(f"Final Score: {labels["home_goals_total"]} - {labels["away_goals_total"]}")
 st.subheader("Filter to a team/player to see all of their shots in the game!")
 

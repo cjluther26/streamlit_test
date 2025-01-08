@@ -8,13 +8,34 @@ import mplcursors
 
 
 # Load data
-test_df = pd.read_csv("./test_data_shots.csv")
+test_df = pd.read_csv("./EPL_2024_match_shots.csv")
 
 # Clean data
-test_df['xG'] = test_df['xG'].fillna(0)
-test_df['team'] = np.where(test_df["h_a"] == "h", test_df["h_team"], test_df["a_team"])
-test_df = test_df[["id", "minute", "result", "X", "Y", "xG", "player", "team", "situation", "shotType", "match_id", "h_goals", "a_goals", "player_assisted", "lastAction", "date", "h_team", "a_team"]]
-test_df = test_df.sort_values(by=['team', 'player'])
+test_df.rename(columns={"X": "x", "Y": "y"}, inplace=True)
+test_df["xG"] = test_df["xG"].fillna(0)
+test_df["team"] = np.where(test_df["h_a"] == "h", test_df["h_team"], test_df["a_team"])
+test_df["match_name"] = "(" + test_df["date"].str.slice(0,10) + ") " + test_df["h_team"] + " vs. " + test_df["a_team"]
+
+test_df = test_df[["id", "minute", "result", "x", "y", "xG", "player", "team", "situation", "shotType", "match_id", "h_goals", "a_goals", "player_assisted", "lastAction", "date", "h_team", "a_team"]]
+test_df = test_df.sort_values(by=["team", "player", "minute"])
+
+
+def isolate_match_df(df: pd.DataFrame, match_name: str) -> pd.DataFrame:
+    """
+    Isolates a DataFrame to a specific match
+    
+    Parameters:
+    - df (pd.DataFrame): the DataFrame to filter
+    - match_name (str): the match to filter by
+
+    Returns:
+    - pd.DataFrame: the filtered DataFrame
+
+    """
+    # Filter to match
+    match_df = df[df["match_name"] == match_name]
+
+    return match_df
 
 
 
@@ -32,15 +53,19 @@ def filter_data(df: pd.DataFrame, team: str, player: str) -> pd.DataFrame:
 
     """
 
+    # Filter to team (if selected)
     if team: 
 
         df = df[df["team"] == team] 
 
+    # Filter to player (if selected)
     if player and player != "": 
 
         df = df[df["player"] == player] 
     
     return df
+
+
 
 def shots_plot(df: pd.DataFrame, ax, pitch):
     """
@@ -100,12 +125,12 @@ def get_plot_labels(df: pd.DataFrame) -> dict:
     return labels
 
 
-# st.title(f"Tottenham vs. Nottingham Forest (2024-12-26)")
 
-labels = get_plot_labels(test_df)
 
-st.title(f"{labels["away_team"]} vs. {labels["home_team"]} ({labels["date"]})")
-st.subheader("Filter to a team/player to see all of their shots in the game!")
+
+#######################
+#### STREAMLIT APP ####
+#######################
 
 # Ensure there is actually data available
 if test_df.empty:
@@ -113,19 +138,41 @@ if test_df.empty:
     st.stop()
 
 # Configure streamlit app
-teams = test_df["team"].unique()
+match_names = test_df["match_name"].unique()
+match_name = st.selectbox(
+    label = "Select a match",
+    options = match_names,
+    index = 0
+)
 
+# Isolate match data
+match_df = isolate_match_df(test_df, match_name)
+
+
+
+# st.title(f"Tottenham vs. Nottingham Forest (2024-12-26)")
+
+# Get labels
+labels = get_plot_labels(match_df)
+
+# Set titles
+st.title(f"{labels["away_team"]} vs. {labels["home_team"]} ({labels["date"]})")
+st.subheader("Filter to a team/player to see all of their shots in the game!")
+
+
+# Configure team selection
 team = st.selectbox(
     label = "Select a team",
-    options = test_df["team"].unique(),
+    options = match_df["team"].unique(),
     index = 0
 )
 
 # Isolate players to plot, add empty string to allow for all players, and sort
-available_players = test_df[test_df["team"] == team]["player"].unique().tolist()
+available_players = match_df[match_df["team"] == team]["player"].unique().tolist()
 available_players.append("")
 available_players.sort()
 
+# Configure player selection
 player = st.selectbox(
     label = "Select a player",
     options = available_players,
@@ -133,7 +180,7 @@ player = st.selectbox(
 )
 
 # Isolate data
-xG_df = filter_data(test_df, team = team, player = player)
+xG_df = filter_data(match_df, team = team, player = player)
 
 # Create a pitch
 pitch = Pitch(pitch_type = "opta", line_zorder = 2, pitch_color = "#f0f0f0", line_color = "black", half = True)

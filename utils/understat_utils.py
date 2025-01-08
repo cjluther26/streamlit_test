@@ -59,6 +59,10 @@ def get_understat_matches(league_id: str = "EPL", year: int = 2024) -> str:
     # Declare GET parameters
     url = f"https://understat.com/league/{league_id}/{year}"
 
+    logging.info(
+        f"Getting match data for matches in the {league_id} in {year}..."
+    )
+
     # GET request
     response = requests.get(url)
 
@@ -74,7 +78,7 @@ def get_understat_matches(league_id: str = "EPL", year: int = 2024) -> str:
     all_matches_json = clean_understat_return(data_string)
 
     # Remove any matches without results
-    matches_json = [obs for obs in all_matches_json if obs["isResult"] is False]
+    matches_json = [obs for obs in all_matches_json if obs["isResult"] is True]
 
     return matches_json
 
@@ -112,6 +116,16 @@ def get_understat_match_data(match_id: str = "26779") -> Dict:
     - match_data_json (Dict): dictionary containing data on the match
 
     """
+
+    if match_id is not int:
+
+        try: 
+
+            match_id = int(match_id)
+
+        except ValueError:
+            
+            raise ValueError("Match ID must be an integer")
 
     logging.info(
         f"Getting data for match ID {match_id}"
@@ -152,7 +166,6 @@ def get_understat_match_data_mutliple(match_ids: List) -> List[Dict[Any, Any]]:
     return matches_shot_data_list
 
     
-
 
 
 

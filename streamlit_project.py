@@ -114,8 +114,6 @@ def get_plot_labels(df: pd.DataFrame) -> dict:
 
     labels = {}
 
-    # match_df = df[df["match_id"] == match_id]
-
     # Isolate home and away teams
     labels["home_team"] = df["h_team"].iloc[0]
     labels["away_team"] = df["a_team"].iloc[0]
@@ -126,7 +124,10 @@ def get_plot_labels(df: pd.DataFrame) -> dict:
     return labels
 
 
-
+# match_name = "(2024-08-16) Manchester United vs. Fulham"
+# match_df = isolate_match_df(test_df, match_name)
+# labels = get_plot_labels(match_df)
+# print(labels)
 
 
 #######################

@@ -121,7 +121,7 @@ def get_plot_labels(df: pd.DataFrame) -> dict:
     labels["away_team"] = df["a_team"].iloc[0]
 
     # Isolate date (crudely)
-    labels["date"] = df["date"].iloc[0][0:10]
+    labels["date_str"] = df["date_str"].iloc[0]
 
     return labels
 

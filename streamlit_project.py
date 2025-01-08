@@ -88,8 +88,8 @@ def shots_plot(df: pd.DataFrame, ax, pitch):
     for x in df.to_dict(orient = "records"):
 
         pitch.scatter(
-            x = 100 * x["X"],
-            y = 100 * x["Y"],
+            x = 100 * x["x"],
+            y = 100 * x["y"],
             ax = ax,
             s = 1000 * x["xG"],
             color = "green" if x["result"] == "Goal" else "white",

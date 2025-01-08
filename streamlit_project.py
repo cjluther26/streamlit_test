@@ -14,10 +14,11 @@ test_df = pd.read_csv("./EPL_2024_match_shots.csv")
 test_df.rename(columns={"X": "x", "Y": "y"}, inplace=True)
 test_df["xG"] = test_df["xG"].fillna(0)
 test_df["team"] = np.where(test_df["h_a"] == "h", test_df["h_team"], test_df["a_team"])
-test_df["match_name"] = "(" + test_df["date"].str.slice(0,10) + ") " + test_df["h_team"] + " vs. " + test_df["a_team"]
+test_df["date_str"] = test_df["date"].str.slice(0,10)
+test_df["match_name"] = "(" + test_df["date_str"] + ") " + test_df["h_team"] + " vs. " + test_df["a_team"]
 
-test_df = test_df[["id", "minute", "result", "x", "y", "xG", "player", "team", "situation", "shotType", "match_id", "h_goals", "a_goals", "player_assisted", "lastAction", "date", "h_team", "a_team"]]
-test_df = test_df.sort_values(by=["team", "player", "minute"])
+test_df = test_df[["date_str", "match_name", "id", "minute", "result", "x", "y", "xG", "player", "team", "situation", "shotType", "match_id", "h_goals", "a_goals", "player_assisted", "lastAction", "h_team", "a_team"]]
+test_df = test_df.sort_values(by=["date_str", "match_name", "team", "player", "minute"])
 
 
 def isolate_match_df(df: pd.DataFrame, match_name: str) -> pd.DataFrame:

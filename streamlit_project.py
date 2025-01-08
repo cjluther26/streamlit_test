@@ -121,6 +121,10 @@ def get_plot_labels(df: pd.DataFrame) -> dict:
     # Isolate date (crudely)
     labels["date_str"] = df["date_str"].iloc[0]
 
+    # Isolate final score (crudely)
+    labels["home_goals_total"] = df["h_goals"].iloc[0]
+    labels["away_goals_total"] = df["a_goals"].iloc[0]
+
     return labels
 
 
@@ -159,6 +163,7 @@ labels = get_plot_labels(match_df)
 
 # Set titles
 st.title(f"{labels["home_team"]} vs. {labels["away_team"]} ({labels["date_str"]})")
+st.subheader(f"Final Score: {labels["home_goals_total"]} - {labels["away_goals_total"]}")
 st.subheader("Filter to a team/player to see all of their shots in the game!")
 
 
